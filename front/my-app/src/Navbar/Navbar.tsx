@@ -3,16 +3,14 @@ import {GiHamburgerMenu} from 'react-icons/gi'
 import {IoMdClose} from 'react-icons/io'
 
 function Navbar() {
-    let [open, setOpen] = useState(false);
+    const [open, setOpen] = useState(false);
 
     return (
         <div className='navbar'>
             <div className='w-1/2 flex pt-4'>
-                <a href='/#'>
-                    <span className='flex items-start lg:items-center'>
-                        <img src='../images/icons/logo.png' alt='logo'/>
-                        <p className='text-primary-dark ml-1 mt-1 lg:mt-0 font-bold'>FlowrSpot</p>
-                    </span>
+                <a href='/#' className='flex items-start lg:items-center'>
+                    <img src='../images/icons/logo.png' alt='logo'/>
+                    <p className='text-primary-dark ml-1 mt-1 lg:mt-0 font-bold'>FlowrSpot</p>
                 </a>
             </div>
             <div className='bg-white z-100 w-1/2 pt-4'>
