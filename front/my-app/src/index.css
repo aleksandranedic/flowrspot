@@ -2,6 +2,27 @@
 @tailwind components;
 @tailwind utilities;
 
+.navbar {
+  @apply pr-7 pl-5 pb-0 flex justify-between bg-transparent absolute top-0 w-full z-20 text-sm font-Montserrat
+}
+.pink-text {
+  @apply text-primary-text hover:text-primary-pointer
+}
+.gray-text {
+  @apply text-secondary-gray hover:text-secondary-lightGray
+}
+.accordion {
+  @apply lg:flex justify-between items-center transition-all duration-500 ease-linear z-[-1]
+}
+.accordion-item{
+  @apply mb-4 lg:m-0 flex justify-end lg:block
+}
+.button{
+  @apply text-white p-2 pl-5 pr-5 bg-gradient-to-r from-primary-dark to-primary-light rounded-full text-sm hover:from-primary-light hover:to-primary-pointer
+}
+.nav-button{
+  @apply absolute right-4 cursor-pointer top-3
+}
 
 html, body, #root {
   height: 100%;
@@ -10,7 +31,7 @@ html, body, #root {
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue'
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
