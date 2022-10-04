@@ -17,8 +17,11 @@
 .accordion-item{
   @apply mb-4 lg:m-0 flex justify-start lg:block
 }
-.button{
-  @apply text-white p-2 pl-5 pr-5 bg-gradient-to-r from-primary-dark to-primary-light rounded-full text-sm hover:from-primary-light hover:to-primary-pointer
+.pink-button{
+  @apply p-2 pl-5 pr-5 text-white rounded-full text-sm bg-gradient-to-r from-primary-dark to-primary-light hover:from-primary-light hover:to-primary-pointer
+}
+.gray-button{
+  @apply p-2 pl-5 pr-5 text-white rounded-full text-sm bg-black/50 hover:bg-gradient-to-r hover:from-primary-light hover:to-primary-pointer
 }
 .nav-button{
   @apply absolute right-4 cursor-pointer top-3 z-50
@@ -32,6 +35,17 @@
   @apply w-full flex justify-center absolute bottom-14 sm:bottom-20 md:bottom-28 lg:bottom-40 md:h-12
 }
 
+.flower-img {
+  @apply w-full h-full object-cover rounded brightness-50
+}
+
+.fav_button {
+  @apply rounded-full absolute top-3 right-3 p-2 bg-white
+}
+
+.flowercard-info {
+  @apply absolute bottom-10 text-white flex flex-col justify-between items-center w-full cursor-default
+}
 
 .homepage-container {
   background-color: #F2F2F2;
@@ -47,6 +61,9 @@
 html, body, #root {
   height: 100%;
   width: 100%;
+}
+#root {
+  overflow: auto;
 }
 body {
   margin: 0;
