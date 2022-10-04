@@ -553,16 +553,28 @@ video {
   position: absolute;
 }
 
+.relative {
+  position: relative;
+}
+
 .top-12 {
   top: 3rem;
 }
 
-.right-8 {
-  right: 2rem;
+.right-1 {
+  right: 0.25rem;
 }
 
 .top-\[-145px\] {
   top: -145px;
+}
+
+.z-40 {
+  z-index: 40;
+}
+
+.mt-2 {
+  margin-top: 0.5rem;
 }
 
 .ml-1 {
@@ -581,6 +593,32 @@ video {
   display: none;
 }
 
+.h-fit {
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+}
+
+.h-full {
+  height: 100%;
+}
+
+.w-full {
+  width: 100%;
+}
+
+.w-2\/3 {
+  width: 66.666667%;
+}
+
+.w-11\/12 {
+  width: 91.666667%;
+}
+
+.w-1\/12 {
+  width: 8.333333%;
+}
+
 .w-1\/2 {
   width: 50%;
 }
@@ -589,8 +627,20 @@ video {
   cursor: pointer;
 }
 
+.flex-col {
+  flex-direction: column;
+}
+
 .items-start {
   align-items: flex-start;
+}
+
+.items-center {
+  align-items: center;
+}
+
+.justify-center {
+  justify-content: center;
 }
 
 .bg-white {
@@ -598,8 +648,38 @@ video {
   background-color: rgb(255 255 255 / var(--tw-bg-opacity));
 }
 
+.pt-3 {
+  padding-top: 0.75rem;
+}
+
+.pl-2 {
+  padding-left: 0.5rem;
+}
+
 .pt-4 {
   padding-top: 1rem;
+}
+
+.font-Montserrat {
+  font-family: Montserrat, sans-serif;
+}
+
+.font-PlayfairDisplay {
+  font-family: PlayFair Display, sans-serif;
+}
+
+.text-2xl {
+  font-size: 1.5rem;
+  line-height: 2rem;
+}
+
+.text-xs {
+  font-size: 0.75rem;
+  line-height: 1rem;
+}
+
+.font-thin {
+  font-weight: 100;
 }
 
 .font-bold {
@@ -611,17 +691,18 @@ video {
   color: rgb(234 167 158 / var(--tw-text-opacity));
 }
 
+.opacity-0 {
+  opacity: 0;
+}
+
 .navbar {
-  position: absolute;
-  top: 0px;
-  z-index: 20;
   display: flex;
   width: 100%;
   justify-content: space-between;
   background-color: transparent;
   padding-right: 1.75rem;
   padding-left: 1.25rem;
-  padding-bottom: 0px;
+  padding-bottom: 0.5rem;
   font-family: Montserrat, sans-serif;
   font-size: 0.875rem;
   line-height: 1.25rem;
@@ -648,9 +729,15 @@ video {
 }
 
 .accordion {
-  z-index: -1;
+  z-index: 10;
+  width: 100%;
   align-items: center;
   justify-content: space-between;
+  --tw-bg-opacity: 1;
+  background-color: rgb(255 255 255 / var(--tw-bg-opacity));
+  padding-right: 0.75rem;
+  padding-left: 0.75rem;
+  padding-top: 1.25rem;
   transition-property: all;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   transition-duration: 500ms;
@@ -660,13 +747,15 @@ video {
 @media (min-width: 1024px) {
   .accordion {
     display: flex;
+    width: auto;
+    padding-top: 0px;
   }
 }
 
 .accordion-item {
   margin-bottom: 1rem;
   display: flex;
-  justify-content: flex-end;
+  justify-content: flex-start;
 }
 
 @media (min-width: 1024px) {
@@ -703,7 +792,52 @@ video {
   position: absolute;
   right: 1rem;
   top: 0.75rem;
+  z-index: 50;
   cursor: pointer;
+}
+
+.banner-text {
+  position: absolute;
+  top: 25%;
+  --tw-text-opacity: 1;
+  color: rgb(255 255 255 / var(--tw-text-opacity));
+}
+
+.searchbox {
+  position: absolute;
+  bottom: 3.5rem;
+  display: flex;
+  width: 100%;
+  justify-content: center;
+}
+
+@media (min-width: 640px) {
+  .searchbox {
+    bottom: 5rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .searchbox {
+    bottom: 7rem;
+    height: 3rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .searchbox {
+    bottom: 10rem;
+  }
+}
+
+.homepage-container {
+  background-color: #F2F2F2;
+}
+
+.banner {
+  min-width: 100%;
+  max-height: 500px;
+  object-fit: cover;
 }
 
 html, body, #root {
@@ -725,6 +859,35 @@ code {
     monospace;
 }
 
+@media (min-width: 640px) {
+  .sm\:text-3xl {
+    font-size: 1.875rem;
+    line-height: 2.25rem;
+  }
+
+  .sm\:text-base {
+    font-size: 1rem;
+    line-height: 1.5rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .md\:text-4xl {
+    font-size: 2.25rem;
+    line-height: 2.5rem;
+  }
+
+  .md\:text-xl {
+    font-size: 1.25rem;
+    line-height: 1.75rem;
+  }
+
+  .md\:text-lg {
+    font-size: 1.125rem;
+    line-height: 1.75rem;
+  }
+}
+
 @media (min-width: 1024px) {
   .lg\:static {
     position: static;
@@ -738,7 +901,25 @@ code {
     display: none;
   }
 
+  .lg\:w-1\/2 {
+    width: 50%;
+  }
+
   .lg\:items-center {
     align-items: center;
+  }
+
+  .lg\:text-5xl {
+    font-size: 3rem;
+    line-height: 1;
+  }
+
+  .lg\:text-2xl {
+    font-size: 1.5rem;
+    line-height: 2rem;
+  }
+
+  .lg\:opacity-100 {
+    opacity: 1;
   }
 }

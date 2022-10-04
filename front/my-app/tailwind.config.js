@@ -21,8 +21,12 @@ module.exports = {
       },
       fontFamily: {
         'Montserrat': ['Montserrat', 'sans-serif'],
-        'Ubuntu': ['Ubuntu', 'sans-serif'] 
+        'Ubuntu': ['Ubuntu', 'sans-serif'],
+        'PlayfairDisplay' : ['PlayFair Display', 'sans-serif']
       },
+      backgroundImage: {
+        'homePageBanner': "url('../public/images/banner.png')"
+      }
     },
   },
   plugins: [],
