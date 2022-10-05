@@ -7,7 +7,7 @@ interface Props {
 
 
 const PaginationBox: React.FC<Props> = (props:Props) => {
-    var indents = [];
+    let indents = [];
     for (var i:number = 1; i <= props.maxPages; i++) {
         indents.push(i);
     }
@@ -15,7 +15,7 @@ const PaginationBox: React.FC<Props> = (props:Props) => {
     return ( 
         <div className='mt-5 w-full flex justify-center'>
            {indents.map( (num:number) => (
-                <button className='pink-button' onClick={() => props.currPageHandler(num)}> {num}</button>        
+                <button className='pink-button' onClick={() => props.currPageHandler(num)} key={num}> {num}</button>        
            ))}
         </div>
      );

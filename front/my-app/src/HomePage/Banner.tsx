@@ -1,7 +1,7 @@
 import React from 'react';
 import SearchBox from '../utils/SearchBox';
 
-function Banner() {
+const Banner: React.FC = () => {
     return (
         <div className='relative'>
             <div className='w-full h-fit'>

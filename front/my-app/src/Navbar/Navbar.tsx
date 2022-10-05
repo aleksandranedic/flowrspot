@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import {GiHamburgerMenu} from 'react-icons/gi'
 import {IoMdClose} from 'react-icons/io'
 
-function Navbar() {
+const Navbar:React.FC = () => {
     const [open, setOpen] = useState<boolean>(false);
 
     return (
