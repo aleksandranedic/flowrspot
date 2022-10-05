@@ -1,19 +1,15 @@
 import React, {useState, useEffect} from 'react'
 import axios, {AxiosRequestConfig} from 'axios'
 
-export const useFetch = <T>(config: AxiosRequestConfig<any>): [T | undefined, boolean, string] => {
+export const useFetch = <T>(method:string, url:string): [T | undefined, boolean, string] => {
 
     const [data, setData] = useState<T>();
     const [isPending, setIsPending] = useState<boolean>(true);
     const [error, setError] = useState<string>('');
 
     useEffect( () => {
-        sendRequest();
-    }, [config.url])
-
-    const sendRequest = () => {
         setIsPending(true);
-        axios(config)
+        axios({method:method, url:url})
         .then(res => {
             setData(res.data);
             setError('');
@@ -22,7 +18,9 @@ export const useFetch = <T>(config: AxiosRequestConfig<any>): [T | undefined, bo
             setError(err.message);
         })
         .finally( () => setIsPending(false))
-    }
+    }, [url, method])
+
+    
   
     return [data, isPending, error];
 }

@@ -8,7 +8,7 @@ import {backlink} from "../utils/Constants"
 
 const FlowerCardsDisplay: React.FC = () => {
     const [currPage, setCurrPage] = useState<number>(1)
-    const [data, isPending, error] = useFetch<FlowerList & Pagination>({method:"GET", url:backlink + "flowers?page=" + currPage}); // 
+    const [data, isPending, error] = useFetch<FlowerList & Pagination>("GET",backlink + "flowers?page=" + currPage); // 
 
     return (
         <div>
