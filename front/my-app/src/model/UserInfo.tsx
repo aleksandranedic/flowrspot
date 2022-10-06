@@ -75,8 +75,7 @@ export class LogedUser {
     };
 
     public static isUserLoged():boolean {
-        console.log(this.logedUser)
-        return this.logedUser !== null
+        return this.logedUser !== null || typeof this.logedUser === 'undefined'
     } 
 
     public static logoutUser(): void {

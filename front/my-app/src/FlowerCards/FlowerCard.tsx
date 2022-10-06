@@ -4,7 +4,6 @@ import {AiFillStar} from "react-icons/ai"
 import { LogedUser } from '../model/UserInfo';
 
 const FlowerCard: React.FC<Flower> = ({flower}) => {
-    console.log(LogedUser.isUserLoged())
     return (
         <div className='relative'>
             <img src={flower.profile_picture} alt={flower.name} className="flower-img"/>
