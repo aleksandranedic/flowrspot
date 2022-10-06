@@ -15,8 +15,11 @@ module.exports = {
         },
         secondary : {
           gray: '#949EA0',
-          lightGray: "#BEC4C6"
-
+          lightGray: "#BEC4C6",
+          title: "#334144",
+          input: "#F5F6F7",
+          inputLabel: "#949EA0",
+          background: "#F2F2F2"
         }
       },
       fontFamily: {

@@ -1,9 +1,26 @@
 import React, {useState} from 'react';
 import {GiHamburgerMenu} from 'react-icons/gi'
 import {IoMdClose} from 'react-icons/io'
+import LoginModal from '../modals/LoginModal';
+import RegisterModal from '../modals/RegisterModal';
 
 const Navbar:React.FC = () => {
     const [open, setOpen] = useState<boolean>(false);
+    const [openLoginModal, setOpenLoginModal] = useState<boolean>(false);
+    const [openRegisterModal, setOpenRegisterModal] = useState<boolean>(false);
+
+    const handleLoginModal = (): void => {
+        setOpen(false);
+        setOpenLoginModal(true);
+        setOpenRegisterModal(false);
+    }
+
+    const handleRegisterModal = (): void => {
+        setOpen(false);
+        setOpenLoginModal(false);
+        setOpenRegisterModal(true);
+    }
+
 
     return (
         <div className='navbar relative'>
@@ -18,12 +35,15 @@ const Navbar:React.FC = () => {
                     <a href='/flowers' className='gray-text accordion-item'>Flowers</a>
                     <a href='/sightings'className='gray-text accordion-item'>Latest Sightings</a>
                     <a href='/favorites' className='gray-text accordion-item'>Favorites</a>
-                    <p className='pink-text accordion-item cursor-pointer'>Login</p>
+                    <p className='pink-text accordion-item cursor-pointer' onClick={() => handleLoginModal()}>Login</p>
                     <div className='accordion-item'>
-                        <button className='pink-button'> New account</button>
+                        <button className='pink-button' onClick={() => handleRegisterModal()}> New account</button>
                     </div>
                 </div>
             </div>
+
+            <LoginModal openModal={openLoginModal} setOpenModal={setOpenLoginModal}/>
+            <RegisterModal openModal={openRegisterModal} setOpenModal={setOpenRegisterModal}/>
 
             <GiHamburgerMenu fill='#949EA0' size={26} className={`nav-button lg:hidden ${!open ? 'flex' : 'hidden'}`} onClick={() => setOpen(!open)}/>
             <IoMdClose fill='#949EA0' size={26} className={`nav-button lg:hidden ${open ? 'flex' : 'hidden'}`} onClick={() => setOpen(!open)}/>

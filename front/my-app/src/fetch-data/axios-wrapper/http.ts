@@ -1,4 +1,5 @@
 import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse } from "axios";
+import { backlink } from "../../utils/Constants";
 
 enum StatusCode {
   Unauthorized = 401,
@@ -8,7 +9,7 @@ enum StatusCode {
 }
 
 const headers: Readonly<Record<string, string | boolean>> = {
-  Accept: "application/json",
+  "Accept": "application/json",
   "Content-Type": "application/json; charset=utf-8",
   "Access-Control-Allow-Credentials": false,
   "X-Requested-With": "XMLHttpRequest",
@@ -38,7 +39,7 @@ class Http {
 
   initHttp() {
     const http = axios.create({
-      baseURL: "https://api.example.com",
+      baseURL: backlink,
       headers,
       withCredentials: false,
     });
