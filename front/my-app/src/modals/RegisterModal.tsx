@@ -2,15 +2,15 @@ import React, {useState, useRef} from 'react'
 import { AxiosResponse } from 'axios';
 import Modal from 'react-modal'
 import { registerUser } from '../fetch-data/services/userService';
-import ModalProps from '../model/ModalProps';
+import {ModalProps} from '../model/Props';
 import { RegisterInfo } from '../model/UserInfo';
 import {MdOutlineError} from 'react-icons/md'
  
-const RegisterModal: React.FunctionComponent<ModalProps> = ({openModal, setOpenModal}) => {
+const RegisterModal: React.FunctionComponent<ModalProps> = ({openModal, setOpenModal, setSuccessModal}) => {
     
     const [showErrorRegister, setShowErrorRegister] = useState<boolean>(false)
-
     const errorMessage = useRef<HTMLParagraphElement>(null);
+
     const [formData, setFormData] = useState<RegisterInfo>({email: "string", password: "string", first_name: "string", last_name: "string", date_of_birth: "string"})
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -27,18 +27,22 @@ const RegisterModal: React.FunctionComponent<ModalProps> = ({openModal, setOpenM
     const register = async () => {
         await registerUser("users/register", formData)
         .then((res:AxiosResponse) => {
-            localStorage.setItem("token", res.data.auth_token)
-            window.location.reload();
+            closeModal();
+            setSuccessModal!(true);
         })
         .catch((err:AxiosResponse) => {
             errorMessage.current!.innerHTML = err.data.error
             setShowErrorRegister(true);
         });
-        
     };
     
+    const closeModal = () => {
+        setShowErrorRegister(false); 
+        setOpenModal(false)
+    }
+    
     return ( 
-        <Modal isOpen={openModal} onRequestClose={() => {setShowErrorRegister(false); setOpenModal(false)}} closeTimeoutMS={300} ariaHideApp={false} className="modal">
+        <Modal isOpen={openModal} onRequestClose={closeModal} closeTimeoutMS={300} ariaHideApp={false} className="modal">
             <div className='modal-header'> Create an Account </div>
             <form onSubmit={registerSubmitHandler} className='modal-content flex flex-column'>
                 <div className="flex justify-between gap-2">

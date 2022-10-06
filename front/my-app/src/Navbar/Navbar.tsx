@@ -1,26 +1,21 @@
 import React, {useState} from 'react';
 import {GiHamburgerMenu} from 'react-icons/gi'
 import {IoMdClose} from 'react-icons/io'
-import LoginModal from '../modals/LoginModal';
-import RegisterModal from '../modals/RegisterModal';
+import { infoAboutLogedUser } from '../fetch-data/services/userService';
+import { useFetch } from '../fetch-data/useFetch';
+import { LogedUser, UserInfo } from '../model/UserInfo';
+import LogedNavOption from './LogedNavOption';
+import NotLogedNavOptions from './NotLogedNavOption';
+
 
 const Navbar:React.FC = () => {
     const [open, setOpen] = useState<boolean>(false);
-    const [openLoginModal, setOpenLoginModal] = useState<boolean>(false);
-    const [openRegisterModal, setOpenRegisterModal] = useState<boolean>(false);
 
-    const handleLoginModal = (): void => {
-        setOpen(false);
-        setOpenLoginModal(true);
-        setOpenRegisterModal(false);
+    const [logedUser, isPending, error] = useFetch<UserInfo>(infoAboutLogedUser, "users/me");
+
+    if(logedUser) {
+        LogedUser.createLogedUser(logedUser.user.id, logedUser.user.first_name, logedUser.user.last_name)
     }
-
-    const handleRegisterModal = (): void => {
-        setOpen(false);
-        setOpenLoginModal(false);
-        setOpenRegisterModal(true);
-    }
-
 
     return (
         <div className='navbar relative'>
@@ -33,21 +28,20 @@ const Navbar:React.FC = () => {
             <div className='bg-white z-40 w-1/2 pt-2'>
                 <div className={`accordion ${open ? 'absolute top-12 right-1 lg:static' : 'absolute top-[-145px] right-1 opacity-0 lg:opacity-100 lg:static'}`}> 
                     <a href='/flowers' className='gray-text accordion-item'>Flowers</a>
-                    <a href='/sightings'className='gray-text accordion-item'>Latest Sightings</a>
+                    <a href='/sightings' className='gray-text accordion-item'>Latest Sightings</a>
                     <a href='/favorites' className='gray-text accordion-item'>Favorites</a>
-                    <p className='pink-text accordion-item cursor-pointer' onClick={() => handleLoginModal()}>Login</p>
-                    <div className='accordion-item'>
-                        <button className='pink-button' onClick={() => handleRegisterModal()}> New account</button>
-                    </div>
+                    { !isPending && !logedUser && error && <>
+                        <NotLogedNavOptions open={setOpen}/>
+                    </>
+                    }
+                    { !isPending && logedUser && !error && 
+                        <LogedNavOption name={LogedUser.fullName}/>
+                    }
                 </div>
             </div>
 
-            <LoginModal openModal={openLoginModal} setOpenModal={setOpenLoginModal}/>
-            <RegisterModal openModal={openRegisterModal} setOpenModal={setOpenRegisterModal}/>
-
             <GiHamburgerMenu fill='#949EA0' size={26} className={`nav-button lg:hidden ${!open ? 'flex' : 'hidden'}`} onClick={() => setOpen(!open)}/>
             <IoMdClose fill='#949EA0' size={26} className={`nav-button lg:hidden ${open ? 'flex' : 'hidden'}`} onClick={() => setOpen(!open)}/>
-            
         </div>
     );
 }

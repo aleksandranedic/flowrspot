@@ -2,12 +2,13 @@ import { AxiosResponse } from 'axios';
 import React, {useState, useRef} from 'react'
 import Modal from 'react-modal'
 import { loginUser } from '../fetch-data/services/userService';
-import ModalProps from '../model/ModalProps';
+import {ModalProps} from '../model/Props';
 import {LoginInfo} from '../model/UserInfo';
 import {MdOutlineError} from 'react-icons/md'
+import { tokenName } from '../utils/Constants';
 
  
-const LoginModal: React.FunctionComponent<ModalProps> = ({openModal, setOpenModal}) => {
+const LoginModal: React.FunctionComponent<ModalProps> = ({openModal, setOpenModal, setSuccessModal}) => {
     
     const [showError, setShowError] = useState<boolean>(false)
 
@@ -28,8 +29,10 @@ const LoginModal: React.FunctionComponent<ModalProps> = ({openModal, setOpenModa
     const login = async () => {
         await loginUser("users/login", formData)
         .then((res:AxiosResponse) => {
-            localStorage.setItem("token", res.data.auth_token)
-            window.location.reload();
+            localStorage.setItem(tokenName, res.data.auth_token)
+            closeModal();
+            setSuccessModal!(true);
+           
         })
         .catch((err:AxiosResponse) => {
             errorMessage.current!.innerHTML = err.data.error
@@ -37,8 +40,13 @@ const LoginModal: React.FunctionComponent<ModalProps> = ({openModal, setOpenModa
         });
     };
 
+    const closeModal = () => {
+        setShowError(false); 
+        setOpenModal(false)
+    }
+
     return ( 
-        <Modal isOpen={openModal} onRequestClose={() => {setShowError(false); setOpenModal(false)}} closeTimeoutMS={300} ariaHideApp={false} className="modal">
+        <Modal isOpen={openModal} onRequestClose={closeModal} closeTimeoutMS={300} ariaHideApp={false} className="modal">
             <div className='modal-header'> Welcome back </div>
             <form onSubmit={loginSubmitHandler} className='modal-content flex flex-column'>
                 <div className='modal-group h-14'>

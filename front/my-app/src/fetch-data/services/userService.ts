@@ -11,6 +11,10 @@ export const registerUser = async (url:string, registerInfo: RegisterInfo): Prom
     return await http.post<RegisterInfo, Promise<AxiosResponse>>(url, registerInfo);
   };
 
+export const infoAboutLogedUser = async (url:string): Promise<AxiosResponse> => {
+  return await http.get<Promise<AxiosResponse>>(url);
+};
+
 /*export const createUser = async (user: User): Promise<User> => {
   return await http.post<User>("/users", user);
 };

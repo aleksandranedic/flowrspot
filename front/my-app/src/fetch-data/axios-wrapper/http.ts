@@ -1,5 +1,5 @@
 import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse } from "axios";
-import { backlink } from "../../utils/Constants";
+import { backlink, tokenName } from "../../utils/Constants";
 
 enum StatusCode {
   Unauthorized = 401,
@@ -19,7 +19,7 @@ const headers: Readonly<Record<string, string | boolean>> = {
 // We get the `accessToken` from the localStorage that we set when we authenticate
 const injectToken = (config: AxiosRequestConfig): AxiosRequestConfig => {
   try {
-    const token = localStorage.getItem("accessToken");
+    const token = localStorage.getItem(tokenName);
 
     if (token != null) {
       config!.headers!.Authorization = `Bearer ${token}`;

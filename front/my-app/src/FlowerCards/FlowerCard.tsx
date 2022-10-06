@@ -1,13 +1,15 @@
 import React from 'react';
 import {Flower} from "../model/FlowerInterface"
 import {AiFillStar} from "react-icons/ai"
+import { LogedUser } from '../model/UserInfo';
 
 const FlowerCard: React.FC<Flower> = ({flower}) => {
+    console.log(LogedUser.isUserLoged())
     return (
         <div className='relative'>
             <img src={flower.profile_picture} alt={flower.name} className="flower-img"/>
             
-            <button className={`fav_button ${flower.favorite ? "pink-button" : "bg-white gray-button"  }`}>
+            <button className={`fav_button ${flower.favorite  ? "pink-button" : "bg-white gray-button"} ${LogedUser.isUserLoged() ? "flex" : "hidden"}`}>
                 <AiFillStar fill='#D4D8D9' size={18}/>
             </button>
 
