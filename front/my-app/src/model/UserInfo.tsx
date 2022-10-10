@@ -23,44 +23,39 @@ export interface UserInfo {
     }       
 }
 
-export class LogedUser {
-    private static logedUser:LogedUser | null = null;
-    private static sightings: Sighting[];
+export class User {
+    private sightings: Sighting[];
 
-    private constructor(private id:number, private first_name:string, private last_name:string, private email:string, private date_of_birth:string)  {}
-
-    public static createLogedUser(id:number, first_name:string, last_name:string, email:string="placeholder@gmail.com", date_of_birth:string="01.01.2022.") {
-        LogedUser.logedUser = new LogedUser(id, first_name, last_name, email, date_of_birth);
-        LogedUser.sightings = [];
-        LogedUser.getSightings(id);
-        return LogedUser.logedUser;
+    constructor(private id:number, private first_name:string, private last_name:string, private userEmail:string="placeholder@gmail.com", private date_of_birth:string="01.01.2000.")  {
+        this.sightings = []
+        this.getSightings(id);
     }
 
-    static get fullName() {
-        return this.logedUser?.first_name + " " + this.logedUser?.last_name; 
+    get fullName() {
+        return this.first_name + " " + this.last_name; 
     }
 
-    static get firstName() {
-        return this.logedUser?.first_name; 
+    get firstName() {
+        return this.first_name; 
     }
 
-    static get lastName() {
-        return this.logedUser?.last_name; 
+    get lastName() {
+        return this.last_name; 
     }
 
-    static get email() {
-        return this.logedUser?.email; 
+    get email() {
+        return this.userEmail; 
     }
 
-    static get dateOfBirth() {
-        return this.logedUser?.date_of_birth;
+    get dateOfBirth() {
+        return this.date_of_birth;
     }
 
-    static get sightingsNum() {
+    get sightingsNum() {
         return this.sightings.length;
     }
 
-    private static getSightings = async (id: number) => {
+    private getSightings = async (id: number) => {
         await getUserSighting(`users/${id}/sightings`)
         .then((res:AxiosResponse) => { 
             const sightings = res.data.sightings;
@@ -73,13 +68,4 @@ export class LogedUser {
             console.log(err)
         });
     };
-
-    public static isUserLoged():boolean {
-        return this.logedUser !== null || typeof this.logedUser === 'undefined'
-    } 
-
-    public static logoutUser(): void {
-        this.logedUser = null;
-    }
-
 }

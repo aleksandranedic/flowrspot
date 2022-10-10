@@ -1,21 +1,16 @@
 import React, {useState} from 'react';
 import {GiHamburgerMenu} from 'react-icons/gi'
 import {IoMdClose} from 'react-icons/io'
-import { infoAboutLogedUser } from '../fetch-data/services/userService';
-import { useFetch } from '../fetch-data/useFetch';
-import { LogedUser, UserInfo } from '../model/UserInfo';
+import { useAppSelector } from '../state/hooks';
 import LogedNavOption from './LogedNavOption';
 import NotLogedNavOptions from './NotLogedNavOption';
 
 
 const Navbar:React.FC = () => {
+    const logedUser = useAppSelector((state) => state.logedUser.logedUser);
+    const loged = useAppSelector((state) => state.logedUser.loged);
     const [open, setOpen] = useState<boolean>(false);
-
-    const [logedUser, isPending, error] = useFetch<UserInfo>(infoAboutLogedUser, "users/me");
-
-    if(logedUser) {
-        LogedUser.createLogedUser(logedUser.user.id, logedUser.user.first_name, logedUser.user.last_name)
-    }
+    
 
     return (
         <div className='navbar relative'>
@@ -30,12 +25,12 @@ const Navbar:React.FC = () => {
                     <a href='/flowers' className='gray-text accordion-item'>Flowers</a>
                     <a href='/sightings' className='gray-text accordion-item'>Latest Sightings</a>
                     <a href='/favorites' className='gray-text accordion-item'>Favorites</a>
-                    { !isPending && !logedUser && error && <>
-                        <NotLogedNavOptions open={setOpen}/>
+                    { !loged && <>
+                        <NotLogedNavOptions navbarOpen={setOpen}/>
                     </>
                     }
-                    { !isPending && logedUser && !error && 
-                        <LogedNavOption name={LogedUser.fullName}/>
+                    { loged && logedUser&& 
+                        <LogedNavOption name={logedUser.fullName} navbarOpen={setOpen}/>
                     }
                 </div>
             </div>

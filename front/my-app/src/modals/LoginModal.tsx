@@ -23,16 +23,15 @@ const LoginModal: React.FunctionComponent<ModalProps> = ({openModal, setOpenModa
         event.preventDefault();
         setShowError(false);
         errorMessage.current!.innerHTML = '';
-        login();
+        tryLogin();
     }
 
-    const login = async () => {
+    const tryLogin = async () => {
         await loginUser("users/login", formData)
-        .then((res:AxiosResponse) => {
+        .then((res:AxiosResponse) => { 
             localStorage.setItem(tokenName, res.data.auth_token)
             closeModal();
             setSuccessModal!(true);
-           
         })
         .catch((err:AxiosResponse) => {
             errorMessage.current!.innerHTML = err.data.error

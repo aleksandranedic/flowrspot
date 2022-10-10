@@ -12,7 +12,7 @@ const headers: Readonly<Record<string, string | boolean>> = {
   "Accept": "application/json",
   "Content-Type": "application/json; charset=utf-8",
   "Access-Control-Allow-Credentials": false,
-  "X-Requested-With": "XMLHttpRequest",
+  "X-Requested-With": "XMLHttpRequest"
 };
 
 // We can use the following function to inject the JWT token through an interceptor
@@ -24,6 +24,7 @@ const injectToken = (config: AxiosRequestConfig): AxiosRequestConfig => {
     if (token != null) {
       config!.headers!.Authorization = `Bearer ${token}`;
     }
+    
     return config;
   } catch (error:any) {
     throw new Error(error.message);

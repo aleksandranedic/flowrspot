@@ -5,10 +5,10 @@ import RegisterModal from '../modals/RegisterModal';
 import RegistrationSuccessModal from '../modals/RegistrationSuccessModal';
 
 interface NotLogedNavOptionsProps {
-    open: (isOpen: boolean) => void;
+    navbarOpen: (isOpen: boolean) => void;
 }
  
-const NotLogedNavOptions: React.FunctionComponent<NotLogedNavOptionsProps> = ({open}) => {
+const NotLogedNavOptions: React.FunctionComponent<NotLogedNavOptionsProps> = ({navbarOpen}) => {
     
     const [openLoginModal, setOpenLoginModal] = useState<boolean>(false);
     const [openRegisterModal, setOpenRegisterModal] = useState<boolean>(false);
@@ -17,14 +17,14 @@ const NotLogedNavOptions: React.FunctionComponent<NotLogedNavOptionsProps> = ({o
     const [openSuccesLoginModal, setSuccessLoginModal] = useState<boolean>(false);
 
     const handleLoginModal = (): void => {
-        open(false);
+        navbarOpen(false);
         setOpenLoginModal(true);
         setOpenRegisterModal(false);
         setSuccessRegisterModal(false);
     }
 
     const handleRegisterModal = (): void => {
-        open(false);
+        navbarOpen(false);
         setOpenLoginModal(false);
         setOpenRegisterModal(true);
         setSuccessRegisterModal(false);
