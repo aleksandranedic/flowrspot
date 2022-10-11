@@ -1,9 +1,9 @@
 import React from "react";
-import { Flower } from "../model/FlowerInterface";
+import { FlowerData } from "../model/FlowerInterface";
 import { useAppSelector } from "../state/hooks";
 import { AiFillStar } from "react-icons/ai";
 
-const FlowerCard: React.FC<Flower> = ({ flower }) => {
+const FlowerCard: React.FC<FlowerData> = ({ flower }) => {
   const loged = useAppSelector((state) => state.logedUser.loged);
 
   return (
