@@ -9,10 +9,10 @@ enum StatusCode {
 }
 
 const headers: Readonly<Record<string, string | boolean>> = {
-  "Accept": "application/json",
+  Accept: "application/json",
   "Content-Type": "application/json; charset=utf-8",
   "Access-Control-Allow-Credentials": false,
-  "X-Requested-With": "XMLHttpRequest"
+  "X-Requested-With": "XMLHttpRequest",
 };
 
 // We can use the following function to inject the JWT token through an interceptor
@@ -24,9 +24,9 @@ const injectToken = (config: AxiosRequestConfig): AxiosRequestConfig => {
     if (token != null) {
       config!.headers!.Authorization = `Bearer ${token}`;
     }
-    
+
     return config;
-  } catch (error:any) {
+  } catch (error: any) {
     throw new Error(error.message);
   }
 };
@@ -45,7 +45,9 @@ class Http {
       withCredentials: false,
     });
 
-    http.interceptors.request.use(injectToken, (error) => Promise.reject(error));
+    http.interceptors.request.use(injectToken, (error) =>
+      Promise.reject(error)
+    );
 
     http.interceptors.response.use(
       (response) => response,
@@ -59,11 +61,16 @@ class Http {
     return http;
   }
 
-  request<T = any, R = AxiosResponse<T>>(config: AxiosRequestConfig): Promise<R> {
+  request<T = any, R = AxiosResponse<T>>(
+    config: AxiosRequestConfig
+  ): Promise<R> {
     return this.http.request(config);
   }
 
-  get<T = any, R = AxiosResponse<T>>(url: string, config?: AxiosRequestConfig): Promise<R> {
+  get<T = any, R = AxiosResponse<T>>(
+    url: string,
+    config?: AxiosRequestConfig
+  ): Promise<R> {
     return this.http.get<T, R>(url, config);
   }
 
@@ -83,13 +90,16 @@ class Http {
     return this.http.put<T, R>(url, data, config);
   }
 
-  delete<T = any, R = AxiosResponse<T>>(url: string, config?: AxiosRequestConfig): Promise<R> {
+  delete<T = any, R = AxiosResponse<T>>(
+    url: string,
+    config?: AxiosRequestConfig
+  ): Promise<R> {
     return this.http.delete<T, R>(url, config);
   }
 
   // Handle global app errors
   // We can handle generic app errors depending on the status code
-  private handleError(error:any) {
+  private handleError(error: any) {
     const { status } = error;
 
     switch (status) {

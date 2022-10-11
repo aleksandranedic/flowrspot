@@ -5,7 +5,7 @@ import { http } from "../axios-wrapper/http";
 
 export type flowerData = FlowerList & Pagination;
 
-export const fetchFlowers = async (url:string): Promise<AxiosResponse> => {
+export const fetchFlowers = async (url: string): Promise<AxiosResponse> => {
   return await http.get<flowerData, Promise<AxiosResponse>>(url);
 };
 

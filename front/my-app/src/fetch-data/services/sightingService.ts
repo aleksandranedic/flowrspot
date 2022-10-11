@@ -5,11 +5,9 @@ import { http } from "../axios-wrapper/http";
 
 export type sightingData = SightingList & Pagination;
 
-
-export const getUserSighting = async (url:string): Promise<AxiosResponse> => {
+export const getUserSighting = async (url: string): Promise<AxiosResponse> => {
   return await http.get<sightingData, Promise<AxiosResponse>>(url);
 };
-
 
 /*export const createUser = async (user: User): Promise<User> => {
   return await http.post<User>("/users", user);
