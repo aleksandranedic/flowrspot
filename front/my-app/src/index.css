@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 .navbar {
-  @apply pr-7 pl-5 pb-0 flex justify-between bg-transparent absolute top-0 w-full z-20 text-sm font-Montserrat
+  @apply pr-7 pl-5 pb-2 flex justify-between bg-transparent w-full text-sm font-Montserrat z-50 shadow-xl sm:shadow-none
 }
 .pink-text {
   @apply text-primary-text hover:text-primary-pointer
@@ -12,21 +12,112 @@
   @apply text-secondary-gray hover:text-secondary-lightGray
 }
 .accordion {
-  @apply lg:flex justify-between items-center transition-all duration-500 ease-linear z-[-1]
+  @apply w-full lg:w-auto lg:flex justify-between items-center transition-all duration-500 ease-linear z-10 bg-white pr-3 pl-3 pt-5 lg:pt-0
 }
 .accordion-item{
-  @apply mb-4 lg:m-0 flex justify-end lg:block
+  @apply mb-4 lg:m-0 flex justify-start lg:block
 }
-.button{
-  @apply text-white p-2 pl-5 pr-5 bg-gradient-to-r from-primary-dark to-primary-light rounded-full text-sm hover:from-primary-light hover:to-primary-pointer
+.pink-button{
+  @apply p-2 pl-5 pr-5 text-white rounded-full text-sm bg-gradient-to-r from-primary-dark to-primary-light hover:from-primary-light hover:to-primary-pointer
+}
+.gray-button{
+  @apply p-2 pl-5 pr-5 text-white rounded-full text-sm bg-black/50 hover:bg-gradient-to-r hover:from-primary-light hover:to-primary-pointer
 }
 .nav-button{
-  @apply absolute right-4 cursor-pointer top-3
+  @apply absolute right-4 cursor-pointer top-3 z-50
 }
+
+.banner-text {
+  @apply absolute top-1/4  text-white
+}
+
+.searchbox {
+  @apply w-full flex justify-center absolute bottom-14 sm:bottom-20 md:bottom-28 lg:bottom-40 md:h-12
+}
+
+.flower-img {
+  @apply w-full h-full object-cover rounded brightness-50
+}
+
+.fav_button {
+  @apply rounded-full absolute top-3 right-3 p-2 bg-white
+}
+
+.flowercard-info {
+  @apply absolute bottom-10 text-white flex flex-col justify-between items-center w-full cursor-default
+}
+
+.modal {
+  @apply w-full sm:w-4/12 h-fit absolute top-20 sm:top-40 sm:left-1/3 bg-white flex flex-col rounded sm:shadow-xl outline-none
+}
+
+.modal-header {
+  @apply w-full flex justify-center p-3 pt-6 font-Ubuntu text-2xl font-bold text-secondary-title cursor-default
+}
+
+.modal-content {
+  @apply w-full flex flex-col p-3
+}
+
+.modal-group {
+  @apply relative p-1 mt-1 mb-1 bg-secondary-input rounded
+}
+.modal-input {
+  @apply focus:outline-none w-full bg-secondary-input font-Ubuntu text-secondary-title
+}
+
+.modal-group {
+  border: 1px solid #DFE5EA;
+}
+
+.modal-input-label {
+  @apply text-secondary-inputLabel text-xs font-Ubuntu
+}
+
+.modal-error-message {
+  @apply font-Ubuntu font-bold text-primary-text
+}
+
+.beneath-modal {
+  @apply absolute -bottom-11 left-1/3 text-white font-Ubuntu opacity-50 cursor-pointer hidden sm:flex
+}
+
+.ReactModal__Overlay { 
+  @apply !bg-white sm:!bg-transparent  overflow-hidden z-20
+}
+.ReactModal__Overlay {
+  transform: translate(0px, -100px);
+  opacity: 0;
+  transition: all 300ms ease-in-out;
+}
+
+.ReactModal__Overlay--after-open{
+  transform: translate(0px, 0px);
+  opacity: 1;
+}
+
+.ReactModal__Overlay--before-close{
+  transform: translate(0px, -100px);
+  opacity: 0;
+}
+
+.homepage-container {
+  @apply bg-secondary-background
+}
+
+.banner {
+  min-width: 100%;
+  max-height: 500px;
+  object-fit: cover;
+}
+
 
 html, body, #root {
   height: 100%;
   width: 100%;
+}
+#root {
+  overflow: auto;
 }
 body {
   margin: 0;
