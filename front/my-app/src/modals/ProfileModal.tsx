@@ -3,12 +3,13 @@ import Modal from "react-modal";
 import { ModalProps } from "../model/Props";
 import { logout } from "../state/logedUserSlice";
 import { useAppSelector, useAppDispatch } from "../state/hooks";
+import { User } from "../model/UserInfo";
 
 const ProfileModal: React.FunctionComponent<ModalProps> = ({
   openModal,
   setOpenModal,
 }) => {
-  const logedUser = useAppSelector((state) => state.logedUser.logedUser);
+  const logedUser = useAppSelector((state) => User.createUser(state.logedUser.logedUser));
   const dispatch = useAppDispatch();
 
   const logOut = () => {

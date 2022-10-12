@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { IoMdClose } from "react-icons/io";
+import { User } from "../model/UserInfo";
 import { useAppSelector } from "../state/hooks";
 import LogedNavOption from "./LogedNavOption";
 import NotLogedNavOptions from "./NotLogedNavOption";
 
 const Navbar: React.FC = () => {
-  const logedUser = useAppSelector((state) => state.logedUser.logedUser);
+  const logedUser = useAppSelector((state) => User.createUser(state.logedUser.logedUser));
   const loged = useAppSelector((state) => state.logedUser.loged);
   const [open, setOpen] = useState<boolean>(false);
 

@@ -61,6 +61,14 @@ export class User {
     return this.sightings.length;
   }
 
+  public static createUser(obj:string):User|null {
+    if (obj) {
+      let user = JSON.parse(obj);
+      return new User(user.id, user.first_name, user.last_name, user.userEmail, user.date_of_birth)
+    }
+    return null;
+  }
+
   private getSightings = async (id: number) => {
     await getUserSighting(`users/${id}/sightings`)
       .then((res: AxiosResponse) => {
