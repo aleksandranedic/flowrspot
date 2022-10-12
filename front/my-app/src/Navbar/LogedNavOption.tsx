@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import ProfileModal from "../modals/ProfileModal";
+import SettingsModal from "../modals/SettingsModal";
 
 interface LogedNavOptionProps {
   name: string;
@@ -12,6 +13,23 @@ const LogedNavOption: React.FunctionComponent<LogedNavOptionProps> = ({
 }) => {
   const [open, setOpen] = useState<boolean>(false);
   const [openProfile, setOpenProfile] = useState<boolean>(false);
+
+  const [openSettings, setOpenSettings] = useState<boolean>(false);
+
+  const openProfileModal = () => {
+    navbarOpen(false);
+    setOpen(false);
+    setOpenProfile(true);
+    setOpenSettings(false)
+  } 
+
+  const openSettingsModal = () => {
+    navbarOpen(false)
+    setOpen(false);
+    setOpenProfile(false);
+    setOpenSettings(true);
+  } 
+
 
   return (
     <div className="flex items-center justify-start gap-2">
@@ -33,19 +51,19 @@ const LogedNavOption: React.FunctionComponent<LogedNavOptionProps> = ({
       >
         <p
           className="gray-text cursor-pointer border-b-2 w-full p-2 pr-4 !flex !justify-end"
-          onClick={() => {
-            setOpenProfile(!openProfile);
-            navbarOpen(false);
-          }}
+          onClick={() => openProfileModal()}
         >
           Profile
         </p>
-        <p className="gray-text cursor-pointer w-full p-2 pr-4 pt-0 !flex !justify-end">
+        <p
+          className="gray-text cursor-pointer w-full p-2 pr-4 pt-0 !flex !justify-end"
+          onClick={() => openSettingsModal()}>
           Settings
         </p>
       </div>
 
       <ProfileModal openModal={openProfile} setOpenModal={setOpenProfile} />
+      <SettingsModal openModal={openSettings} setOpenModal={setOpenSettings} />
     </div>
   );
 };
