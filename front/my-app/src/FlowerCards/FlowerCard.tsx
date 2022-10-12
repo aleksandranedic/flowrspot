@@ -2,9 +2,15 @@ import React from "react";
 import { Flower } from "../model/FlowerInterface";
 import { useAppSelector } from "../state/hooks";
 import { AiFillStar } from "react-icons/ai";
+import { markFavoriteFlower } from "../fetch-data/services/flowerService";
+import { backlink } from "../utils/Constants";
 
 const FlowerCard: React.FC<Flower> = ({ flower }) => {
   const loged = useAppSelector((state) => state.logedUser.loged);
+
+  function setFavorite(id: number) {
+      markFavoriteFlower( backlink + `flowers/${id}/favorites`);
+  }
 
   return (
     <div className="relative">
@@ -15,6 +21,7 @@ const FlowerCard: React.FC<Flower> = ({ flower }) => {
       />
 
       <button
+        onClick={() => setFavorite(flower.id)}
         className={`fav_button ${
           flower.favorite ? "pink-button" : "bg-white gray-button"
         } ${loged ? "flex" : "hidden"}`}

@@ -1,12 +1,22 @@
 import { AxiosResponse } from "axios";
-import { FlowerList } from "../../model/FlowerInterface";
+import { FavoriteFlower, Flower, FlowerList } from "../../model/FlowerInterface";
 import { Pagination } from "../../model/Pagination";
 import { http } from "../axios-wrapper/http";
 
 export type flowerData = FlowerList & Pagination;
 
+export type favoriteFlowerData = FavoriteFlower & Pagination
+
 export const fetchFlowers = async (url: string): Promise<AxiosResponse> => {
   return await http.get<flowerData, Promise<AxiosResponse>>(url);
+};
+
+export const fetchFavoriteFlowers = async (url: string): Promise<AxiosResponse> => {
+  return await http.get<flowerData, Promise<AxiosResponse>>(url);
+};
+
+export const markFavoriteFlower = async (url: string): Promise<AxiosResponse> => {
+  return await http.post(url);
 };
 
 /*export const createUser = async (user: User): Promise<User> => {
