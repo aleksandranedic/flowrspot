@@ -1,7 +1,3 @@
-import { AxiosResponse } from "axios";
-import { getUserSighting } from "../fetch-data/services/sightingService";
-import { Sighting } from "./SightingInterface";
-
 export interface LoginInfo {
   email: string;
   password: string;
@@ -24,18 +20,13 @@ export interface UserInfo {
 }
 
 export class User {
-  private sightings: Sighting[];
-
   constructor(
     private id: number,
     private first_name: string,
     private last_name: string,
     private userEmail: string = "placeholder@gmail.com",
     private date_of_birth: string = "01.01.2000."
-  ) {
-    this.sightings = [];
-    this.getSightings(id);
-  }
+  ) {}
 
   get fullName() {
     return this.first_name + " " + this.last_name;
@@ -57,11 +48,7 @@ export class User {
     return this.date_of_birth;
   }
 
-  get sightingsNum() {
-    return this.sightings.length;
-  }
-
-  private getSightings = async (id: number) => {
+  /*private getSightings = async (id: number) => {
     await getUserSighting(`users/${id}/sightings`)
       .then((res: AxiosResponse) => {
         const sightings = res.data.sightings;
@@ -73,5 +60,5 @@ export class User {
         console.log("UserInfo - getSightings error:");
         console.log(err);
       });
-  };
+  };*/
 }

@@ -9,6 +9,7 @@ const ProfileModal: React.FunctionComponent<ModalProps> = ({
   setOpenModal,
 }) => {
   const logedUser = useAppSelector((state) => state.logedUser.logedUser);
+  const sightingsNum:number = useAppSelector((state) => state.logedUser.sightings.length);
   const dispatch = useAppDispatch();
 
   const logOut = () => {
@@ -37,7 +38,7 @@ const ProfileModal: React.FunctionComponent<ModalProps> = ({
             </p>
             <p className="modal-input-label !text-sm">
               {" "}
-              {logedUser!.sightingsNum} sightings
+              {sightingsNum} sightings
             </p>
           </div>
         </div>

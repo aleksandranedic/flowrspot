@@ -1,10 +1,11 @@
 import React from "react";
 import Modal from "react-modal";
+import { getUserSighting } from "../fetch-data/services/sightingService";
 import { infoAboutLogedUser } from "../fetch-data/services/userService";
 import { ModalProps } from "../model/Props";
 import { User } from "../model/UserInfo";
 import { useAppDispatch } from "../state/hooks";
-import { login } from "../state/logedUserSlice";
+import { login, setFavoriteFlowers, setSightings } from "../state/logedUserSlice";
 
 const LoginSuccessModal: React.FunctionComponent<ModalProps> = ({
   openModal,
@@ -25,16 +26,12 @@ const LoginSuccessModal: React.FunctionComponent<ModalProps> = ({
   };
 
   const fetchLogedUserThunk = async (dispatch: any) => {
-    const response = await infoAboutLogedUser("users/me");
-    dispatch(
-      login(
-        new User(
-          response.data.user.id,
-          response.data.user.first_name,
-          response.data.user.last_name
-        )
-      )
-    );
+    const responseUser = await infoAboutLogedUser("users/me");
+    const responseSightings = await getUserSighting(`users/${responseUser.data.user.id}/sightings`)
+    const responseFlowers = await getUserSighting("flowers/favorites?page=1")
+    dispatch(login(new User(responseUser.data.user.id,responseUser.data.user.first_name,responseUser.data.user.last_name)));
+    dispatch(setSightings(responseSightings.data.sightings));
+    dispatch(setFavoriteFlowers(responseFlowers.data.fav_flowers))
   };
 
   return (
