@@ -1,5 +1,5 @@
 import { AxiosResponse } from "axios";
-import { FavoriteFlower, FlowerList } from "../../model/FlowerInterface";
+import { FavoriteFlower, FlowerDetails, FlowerList } from "../../model/FlowerInterface";
 import { Pagination } from "../../model/Pagination";
 import { http } from "../axios-wrapper/http";
 
@@ -22,6 +22,10 @@ export const markFavoriteFlower = async (url: string): Promise<AxiosResponse> =>
 export const unmarkFlowerFavorite = async (url:string): Promise<AxiosResponse> => {
   return await http.delete(url);
 };
+
+export const fetchFlowerDetails = async (url:string): Promise<AxiosResponse> => {
+  return await http.get<FlowerDetails, Promise<AxiosResponse>>(url);
+}
 
 /*export const createUser = async (user: User): Promise<User> => {
   return await http.post<User>("/users", user);

@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { FavoriteFlower } from "../model/FlowerInterface";
-import { Sighting } from "../model/SightingInterface";
+import { SightingDetails } from "../model/SightingInterface";
 import { User } from "../model/UserInfo";
 import { tokenName } from "../utils/Constants";
 
@@ -8,7 +8,7 @@ interface LogedUserState {
   loged: boolean;
   logedUser: User | null;
   favoriteFlowers: {flowers: FavoriteFlower[], page:number}
-  sightings: Sighting[];
+  sightings: SightingDetails[];
 }
 
 const initialState: LogedUserState = {
@@ -37,7 +37,7 @@ const logedUserSlice = createSlice({
     setFavoriteFlowersPage(state, action: PayloadAction<number>) {
       state.favoriteFlowers.page = action.payload;
     },
-    setSightings(state, action: PayloadAction<Sighting[]>) {
+    setSightings(state, action: PayloadAction<SightingDetails[]>) {
       state.sightings = action.payload;
     }
   },
