@@ -21,6 +21,9 @@ export const fetchFlowerSighting = async (url: string): Promise<AxiosResponse> =
   return await http.get<sightingDetailsData, Promise<AxiosResponse>>(url);
 };
 
+export const addSighting = async (url: string, data:FormData): Promise<AxiosResponse> => {
+  return await http.post(url, data)
+}
 /*export const createUser = async (user: User): Promise<User> => {
   return await http.post<User>("/users", user);
 };

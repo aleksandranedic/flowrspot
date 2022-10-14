@@ -28,7 +28,7 @@ const LoginSuccessModal: React.FunctionComponent<ModalProps> = ({
 
   const fetchLogedUserThunk = async (dispatch: any) => {
     const responseUser = await infoAboutLogedUser("users/me");
-    const responseSightings = await fetchUserSighting(`users/${7468}/sightings`)
+    const responseSightings = await fetchUserSighting(`users/${responseUser.data.user.id}/sightings`)
     const responseFlowers = await fetchUserSighting("flowers/favorites?page=1")
     dispatch(login(new User(responseUser.data.user.id,responseUser.data.user.first_name,responseUser.data.user.last_name)));
     dispatch(setSightings(fetchUserSightingsDetails(responseSightings.data.sightings)));
@@ -43,9 +43,6 @@ const LoginSuccessModal: React.FunctionComponent<ModalProps> = ({
 
   const pushData = async(sightings:SightingDetails[],element:Sighting) => {
     let data:SightingDetails = await fetchSightingInfo<SightingInfoData>(`sightings/${element.id}`).then(r => r.data.sighting);
-    console.log("***")
-    console.log(data)
-    console.log(sightings)
     sightings.push(data)
   }
 

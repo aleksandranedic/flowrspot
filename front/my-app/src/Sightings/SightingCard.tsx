@@ -24,7 +24,7 @@ const SightingCard: React.FunctionComponent<SightingCardProps> = ({sighting}) =>
                             <p className="font-Ubuntu text-secondary-gray text-sm italic"> By {sighting.user.full_name}</p>
                         </div>
                     </div>
-                    <div className="font-Montserrat !font-medium text-secondary-gray text-justify tracking-wider">
+                    <div className="cursor-default font-Montserrat !font-medium text-secondary-gray text-justify tracking-wider truncate">
                         {sighting.description}
                     </div>
                     <hr/>

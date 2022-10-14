@@ -10,7 +10,7 @@ const SightingsBanner: React.FunctionComponent = () => {
             </div>
            
             <div className="hidden sm:flex absolute sm:right-10 sm:bottom-16">
-                <AddSightingButton />
+                {/* <AddSightingButton /> */}
             </div>
             
         </div>        

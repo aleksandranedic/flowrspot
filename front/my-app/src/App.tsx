@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Favorites from "./FlowerCards/Favorites";
 import FlowerProfile from "./FlowerCards/FlowerProfile";
 import SightingsList from "./Sightings/SightingsList";
+import AddSighting from "./Sightings/AddSighting";
 
 function App() {
   return (
@@ -14,6 +15,10 @@ function App() {
         <Route path="/favorites">
           {" "}
           <Favorites />{" "}
+        </Route>
+        <Route path="/add/:id">
+          {" "}
+          <AddSighting />{" "}
         </Route>
         <Route path="/sightings">
           {" "}

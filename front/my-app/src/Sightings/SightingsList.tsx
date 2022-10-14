@@ -20,7 +20,7 @@ const SightingsList: React.FunctionComponent = () => {
             </div>
         }
         <div className='flex w-full justify-center sm:hidden mt-10 mb-10'>
-            <AddSightingButton />
+            {/* <AddSightingButton /> */}
         </div>
         </>
      );
