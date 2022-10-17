@@ -4,12 +4,12 @@ import { tokenName } from "../utils/Constants";
 
 interface LogedUserState {
   loged: boolean;
-  logedUser: User | null;
+  logedUser: string;
 }
 
 const initialState: LogedUserState = {
   loged: false,
-  logedUser: null,
+  logedUser: '',
 };
 
 const logedUserSlice = createSlice({
@@ -18,11 +18,11 @@ const logedUserSlice = createSlice({
   reducers: {
     login(state, action: PayloadAction<User>) {
       state.loged = true;
-      state.logedUser = action.payload;
+      state.logedUser = JSON.stringify(action.payload);
     },
     logout(state) {
       localStorage.removeItem(tokenName);
-      state.logedUser = null;
+      state.logedUser = '';
       state.loged = false;
     },
   },
