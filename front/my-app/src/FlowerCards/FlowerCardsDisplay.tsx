@@ -1,28 +1,23 @@
-import React, { useState } from "react";
+import React from "react";
 import FlowerCards from "../FlowerCards/FlowerCards";
-import { useFetch } from "../fetch-data/useFetch";
 import PaginationBox from "../utils/PaginationBox";
-import { backlink } from "../utils/Constants";
-import { fetchFlowers, flowerData } from "../fetch-data/services/flowerService";
+import { Flower } from "../model/FlowerInterface";
 
-const FlowerCardsDisplay: React.FC = () => {
-  const [currPage, setCurrPage] = useState<number>(1);
-  const [data, isPending, error] = useFetch<flowerData>(
-    fetchFlowers,
-    backlink + "flowers?page=" + currPage
-  ); //
+interface FlowerCardsDisplayProps {
+  setCurrentPage: (num:number) => void,
+  totalPages: number,
+  data: Flower[]
+}
+
+const FlowerCardsDisplay: React.FC<FlowerCardsDisplayProps> = ({setCurrentPage, totalPages, data}) => {
 
   return (
-    <div>
-      {!isPending && !error && data && (
-        <>
-          <FlowerCards flowers={data.flowers} />
+    <div>    
+          <FlowerCards flowers={data} />
           <PaginationBox
-            currPageHandler={setCurrPage}
-            maxPages={data.meta.pagination.total_pages}
-          />
-        </>
-      )}
+            currPageHandler={setCurrentPage}
+            maxPages={totalPages}
+          />   
     </div>
   );
 };

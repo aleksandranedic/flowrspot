@@ -1,8 +1,12 @@
 import React from "react";
+import { SearchProps } from "../model/Props";
 import { useAppSelector } from "../state/hooks";
 import SearchBox from "../utils/SearchBox";
 
-const Banner: React.FC = () => {
+
+const Banner: React.FC<SearchProps> = ({data, setFlowers}) => {
+
+
   const loged = useAppSelector((state) => state.logedUser.loged);
 
   return (
@@ -26,7 +30,7 @@ const Banner: React.FC = () => {
           Explore between more that 8.427 sightings
         </p>
       </div>
-      <SearchBox />
+      <SearchBox data={data} setFlowers={setFlowers} />
     </div>
   );
 };
