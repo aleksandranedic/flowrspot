@@ -1,4 +1,3 @@
-import React from "react";
 import HomePage from "./HomePage/HomePage";
 import Navbar from "./Navbar/Navbar";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
@@ -6,6 +5,7 @@ import Favorites from "./FlowerCards/Favorites";
 import FlowerProfile from "./FlowerCards/FlowerProfile";
 import SightingsList from "./Sightings/SightingsList";
 import AddSighting from "./Sightings/AddSighting";
+import SightingDetailsComp from "./Sightings/SightingDetails";
 
 function App() {
   return (
@@ -23,6 +23,10 @@ function App() {
         <Route path="/sightings">
           {" "}
           <SightingsList />{" "}
+        </Route>
+        <Route path="/sighting/:id">
+          {" "}
+          <SightingDetailsComp />{" "}
         </Route>
         <Route path="/flower/:id">
           {" "}

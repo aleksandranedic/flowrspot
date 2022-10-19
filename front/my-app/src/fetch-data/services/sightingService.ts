@@ -1,10 +1,14 @@
 import { AxiosResponse } from "axios";
 import { Pagination } from "../../model/Pagination";
-import { SightingDetailsData, SightingList } from "../../model/SightingInterface";
+import { SightingCommentData, SightingDetailsData, SightingList } from "../../model/SightingInterface";
 import { http } from "../axios-wrapper/http";
 
 export type sightingData = SightingList & Pagination;
 export type sightingDetailsData = SightingDetailsData & Pagination
+export type sightingCommentsData = SightingCommentData & Pagination
+export type addCommentData = {
+  content: string
+}
 
 export const fetchUserSighting = async (url: string): Promise<AxiosResponse> => {
   return await http.get<sightingData, Promise<AxiosResponse>>(url);
@@ -22,6 +26,13 @@ export const fetchFlowerSighting = async (url: string): Promise<AxiosResponse> =
 };
 
 export const addSighting = async (url: string, data:FormData): Promise<AxiosResponse> => {
+  return await http.post(url, data)
+}
+export const fetchSightingComments = async (url: string): Promise<AxiosResponse> => {
+  return await http.get<sightingCommentsData, Promise<AxiosResponse>>(url);
+}; 
+
+export const addComment = async (url: string, data:addCommentData): Promise<AxiosResponse> => {
   return await http.post(url, data)
 }
 /*export const createUser = async (user: User): Promise<User> => {

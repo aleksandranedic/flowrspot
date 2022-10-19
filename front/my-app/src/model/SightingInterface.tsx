@@ -32,3 +32,13 @@ export interface SightingDetails {
   id: number,
   name: string
 }
+export interface SightingCommentData {
+  comments: SightingComment []
+}
+export interface SightingComment {
+    id: number,
+    user_id: number,
+    user_full_name: string,
+    sighting_id: number,
+    content: string
+}
