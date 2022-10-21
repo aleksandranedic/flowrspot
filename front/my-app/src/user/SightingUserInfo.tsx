@@ -1,18 +1,20 @@
 import { AiFillHeart, AiFillMessage } from "react-icons/ai";
+import { frontlink } from "../utils/Constants";
 
 interface SightingUserInfoProps {
     flowerName: string,
     userFullName: string,
+    userId: number,
     description: string,
     commentsCount? :number,
     likesCount? :number
 }
  
-const SightingUserInfo: React.FunctionComponent<SightingUserInfoProps> = ({flowerName, userFullName, description, commentsCount, likesCount}) => {
+const SightingUserInfo: React.FunctionComponent<SightingUserInfoProps> = ({flowerName, userFullName, userId, description, commentsCount, likesCount}) => {
     return ( 
         <div className="flex flex-col gap-4 p-5 bg-white">
                     <div className="flex gap-5 justify-start">
-                        <img src="../images/profile_placeholder.jpg" alt="user" className="mb-5 lg:mb-0 rounded-full max-h-12 object-contain cursor-pointer" />
+                        <img src="../images/profile_placeholder.jpg" alt="user" onClick={() => window.location.href=`${frontlink}user/${userId}`} className="mb-5 lg:mb-0 rounded-full max-h-12 object-contain cursor-pointer" />
                         <div className="flex flex-col justify-start">
                             <p className="font-Ubuntu text-secondary-title">{flowerName}</p>
                             <p className="font-Ubuntu text-secondary-gray text-sm italic"> By {userFullName}</p>
@@ -22,7 +24,7 @@ const SightingUserInfo: React.FunctionComponent<SightingUserInfoProps> = ({flowe
                         {description}
                     </div>
                     <hr/>
-                    {(typeof commentsCount !== "undefined") && (typeof likesCount !== "undefined") && <div className="flex justify-start gap-7 font-Ubuntu text-secondary-gray">
+                    { (typeof commentsCount !== 'undefined') && (typeof likesCount !== 'undefined') && <div className="flex justify-start gap-7 font-Ubuntu text-secondary-gray">
                         <span className="flex gap-3">
                             <AiFillMessage fill="#DADADA" size={22}/>
                             {commentsCount} comments

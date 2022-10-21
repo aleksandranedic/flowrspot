@@ -12,11 +12,13 @@ export interface RegisterInfo {
 }
 
 export interface UserInfo {
-  user: {
-    id: number;
-    first_name: string;
-    last_name: string;
-  };
+  user: UserData;
+}
+
+export interface UserData{
+  id: number;
+  first_name: string;
+  last_name: string;
 }
 
 export class User {
@@ -48,17 +50,7 @@ export class User {
     return this.date_of_birth;
   }
 
-  /*private getSightings = async (id: number) => {
-    await getUserSighting(`users/${id}/sightings`)
-      .then((res: AxiosResponse) => {
-        const sightings = res.data.sightings;
-        sightings.forEach((el: Sighting) => {
-          sightings.push(el);
-        });
-      })
-      .catch((err: AxiosResponse) => {
-        console.log("UserInfo - getSightings error:");
-        console.log(err);
-      });
-  };*/
+  get userId() {
+    return this.id
+  }
 }

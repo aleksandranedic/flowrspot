@@ -6,12 +6,17 @@ import FlowerProfile from "./FlowerCards/FlowerProfile";
 import SightingsList from "./Sightings/SightingsList";
 import AddSighting from "./Sightings/AddSighting";
 import SightingDetailsComp from "./Sightings/SightingDetails";
+import UserProfile from "./user/UserProfile";
 
 function App() {
   return (
     <Router>
       <Navbar />
       <Switch>
+        <Route path="/user/:id">
+          {" "}
+          <UserProfile />{" "}
+        </Route>
         <Route path="/favorites">
           {" "}
           <Favorites />{" "}
