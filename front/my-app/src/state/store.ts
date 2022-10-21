@@ -12,7 +12,7 @@ const persistedReducer = persistReducer(persistConfig, logedUserReducer) as unkn
 
 export const store = configureStore({
   reducer: {
-    loggedUser: logedUserReducer,
+    loggedUser: persistedReducer,
   },
   middleware: getDefaultMiddleware =>
   getDefaultMiddleware({
