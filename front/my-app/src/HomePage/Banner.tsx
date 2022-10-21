@@ -3,11 +3,8 @@ import { SearchProps } from "../model/Props";
 import { useAppSelector } from "../state/hooks";
 import SearchBox from "../utils/SearchBox";
 
-
 const Banner: React.FC<SearchProps> = ({data, setFlowers}) => {
-
-
-  const loged = useAppSelector((state) => state.logedUser.loged);
+  const logged = useAppSelector((state) => state.loggedUser.logged);
 
   return (
     <div className="relative">
@@ -15,12 +12,12 @@ const Banner: React.FC<SearchProps> = ({data, setFlowers}) => {
         <img
           src="../images/banner.png"
           alt="banner"
-          className={`banner ${loged ? "!opacity-0 !h-52" : "!opacity-100"}`}
+          className={`banner ${logged ? "!opacity-0 !h-52" : "!opacity-100"}`}
         />
       </div>
       <div
         className={`banner-text flex flex-col items-center w-full justify-center ${
-          loged ? "hidden" : "block"
+          logged ? "hidden" : "block"
         }`}
       >
         <p className="font-Montserrat text-2xl sm:text-3xl md:text-4xl lg:text-5xl">

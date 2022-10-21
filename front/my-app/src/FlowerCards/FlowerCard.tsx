@@ -1,38 +1,32 @@
 import React from "react";
 import { FlowerData } from "../model/FlowerInterface";
-import { useAppSelector } from "../state/hooks";
-import { AiFillStar } from "react-icons/ai";
+import FavoriteButton from "../utils/FavoriteButton";
+import SightingsButton from "../utils/SightingsButton";
+
 
 const FlowerCard: React.FC<FlowerData> = ({ flower }) => {
-  const loged = useAppSelector((state) => state.logedUser.loged);
+
+  const seeProfile = (id:number) => {
+    window.location.href = `/flower/${id}`
+  }
 
   return (
-    <div className="relative">
+    <div className="relative cursor-pointer" onClick={() => seeProfile(flower.id)}>
       <img
         src={flower.profile_picture}
         alt={flower.name}
         className="flower-img"
       />
-
-      <button
-        className={`fav_button ${
-          flower.favorite ? "pink-button" : "bg-white gray-button"
-        } ${loged ? "flex" : "hidden"}`}
-      >
-        <AiFillStar fill="#D4D8D9" size={18} />
-      </button>
+      <div className="absolute top-3 right-3">
+        <FavoriteButton flower={flower}/>
+      </div>
 
       <div className="flowercard-info">
         <p className="font-Ubuntu font-bold text-2xl">{flower.name}</p>
         <p className="font-Ubuntu font-extralight">{flower.latin_name}</p>
-        <button
-          className={`button mt-10 ${
-            flower.favorite ? "pink-button" : "gray-button"
-          }`}
-        >
-          {" "}
-          {flower.sightings} sightings{" "}
-        </button>
+        <div className="mt-10 ">
+          <SightingsButton favorite={flower.favorite} sightings={flower.sightings} />
+        </div>
       </div>
     </div>
   );

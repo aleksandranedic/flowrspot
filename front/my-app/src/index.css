@@ -40,7 +40,7 @@
 }
 
 .fav_button {
-  @apply rounded-full absolute top-3 right-3 p-2 bg-white
+  @apply rounded-full p-2 bg-white
 }
 
 .flowercard-info {

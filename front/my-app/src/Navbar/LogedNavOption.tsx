@@ -1,14 +1,17 @@
 import React, { useState } from "react";
 import ProfileModal from "../modals/ProfileModal";
+import { frontlink } from "../utils/Constants";
 import SettingsModal from "../modals/SettingsModal";
 
 interface LogedNavOptionProps {
   name: string;
+  id:number,
   navbarOpen: (isOpen: boolean) => void;
 }
 
 const LogedNavOption: React.FunctionComponent<LogedNavOptionProps> = ({
   name,
+  id,
   navbarOpen,
 }) => {
   const [open, setOpen] = useState<boolean>(false);
@@ -55,6 +58,9 @@ const LogedNavOption: React.FunctionComponent<LogedNavOptionProps> = ({
         >
           Profile
         </p>
+        <p className="gray-text cursor-pointer border-b-2 w-full p-2 pr-4 pt-0 !flex !justify-end" onClick={() => window.location.href = `${frontlink}user/${id}`}>
+          My sightings
+        </p> 
         <p
           className="gray-text cursor-pointer w-full p-2 pr-4 pt-0 !flex !justify-end"
           onClick={() => openSettingsModal()}>

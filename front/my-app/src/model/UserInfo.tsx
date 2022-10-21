@@ -1,7 +1,3 @@
-import { AxiosResponse } from "axios";
-import { getUserSighting } from "../fetch-data/services/sightingService";
-import { Sighting } from "./SightingInterface";
-
 export interface LoginInfo {
   email: string;
   password: string;
@@ -16,26 +12,23 @@ export interface RegisterInfo {
 }
 
 export interface UserInfo {
-  user: {
-    id: number;
-    first_name: string;
-    last_name: string;
-  };
+  user: UserData;
+}
+
+export interface UserData{
+  id: number;
+  first_name: string;
+  last_name: string;
 }
 
 export class User {
-  private sightings: Sighting[];
-
   constructor(
     private id: number,
     private first_name: string,
     private last_name: string,
     private userEmail: string = "placeholder@gmail.com",
     private date_of_birth: string = "01.01.2000."
-  ) {
-    this.sightings = [];
-    this.getSightings(id);
-  }
+  ) {}
 
   get fullName() {
     return this.first_name + " " + this.last_name;
@@ -57,10 +50,9 @@ export class User {
     return this.date_of_birth;
   }
 
-  get sightingsNum() {
-    return this.sightings.length;
+  get userId() {
+    return this.id
   }
-
   public static createUser(obj:string):User|null {
     if (obj) {
       let user = JSON.parse(obj);
@@ -68,18 +60,4 @@ export class User {
     }
     return null;
   }
-
-  private getSightings = async (id: number) => {
-    await getUserSighting(`users/${id}/sightings`)
-      .then((res: AxiosResponse) => {
-        const sightings = res.data.sightings;
-        sightings.forEach((el: Sighting) => {
-          sightings.push(el);
-        });
-      })
-      .catch((err: AxiosResponse) => {
-        console.log("UserInfo - getSightings error:");
-        console.log(err);
-      });
-  };
 }

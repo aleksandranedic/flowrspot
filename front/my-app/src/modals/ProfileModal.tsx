@@ -9,7 +9,8 @@ const ProfileModal: React.FunctionComponent<ModalProps> = ({
   openModal,
   setOpenModal,
 }) => {
-  const logedUser = useAppSelector((state) => User.createUser(state.logedUser.logedUser));
+  const loggedUser = useAppSelector((state) => state.loggedUser.loggedUser);
+  const sightingsNum:number = useAppSelector((state) => state.loggedUser.sightings.length);
   const dispatch = useAppDispatch();
 
   const logOut = () => {
@@ -34,11 +35,11 @@ const ProfileModal: React.FunctionComponent<ModalProps> = ({
           <div className="flex flex-col">
             <p className="font-Ubuntu text-secondary-title !font-light text-xl ">
               {" "}
-              {logedUser!.fullName}{" "}
+              {loggedUser!.fullName}{" "}
             </p>
             <p className="modal-input-label !text-sm">
               {" "}
-              {logedUser!.sightingsNum} sightings
+              {sightingsNum} sightings
             </p>
           </div>
         </div>
@@ -47,7 +48,7 @@ const ProfileModal: React.FunctionComponent<ModalProps> = ({
           <p className="modal-input-label !text-sm"> First name </p>
           <p className="font-Ubuntu text-secondary-title text-base">
             {" "}
-            {logedUser!.firstName}{" "}
+            {loggedUser!.firstName}{" "}
           </p>
         </div>
 
@@ -55,7 +56,7 @@ const ProfileModal: React.FunctionComponent<ModalProps> = ({
           <p className="modal-input-label !text-sm"> Last name </p>
           <p className="font-Ubuntu text-secondary-title text-base">
             {" "}
-            {logedUser!.lastName}{" "}
+            {loggedUser!.lastName}{" "}
           </p>
         </div>
 
@@ -63,7 +64,7 @@ const ProfileModal: React.FunctionComponent<ModalProps> = ({
           <p className="modal-input-label !text-sm"> Date of birth </p>
           <p className="font-Ubuntu text-secondary-title text-base">
             {" "}
-            {logedUser!.dateOfBirth}{" "}
+            {loggedUser!.dateOfBirth}{" "}
           </p>
         </div>
 
@@ -71,7 +72,7 @@ const ProfileModal: React.FunctionComponent<ModalProps> = ({
           <p className="modal-input-label !text-sm"> Email </p>
           <p className="font-Ubuntu text-secondary-title text-base">
             {" "}
-            {logedUser!.email}{" "}
+            {loggedUser!.email}{" "}
           </p>
         </div>
 
