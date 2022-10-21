@@ -4,7 +4,7 @@ import FlowerCardsDisplay from "../FlowerCards/FlowerCardsDisplay";
 import { useFetch } from "../fetch-data/useFetch";
 import { fetchFlowers, flowerData } from "../fetch-data/services/flowerService";
 import { backlink } from "../utils/Constants";
-import { Flower } from "../model/FlowerInterface";
+import { FlowerDetailsData } from "../model/FlowerInterface";
 
 const HomePage: React.FC = () => {
   const [currPage, setCurrPage] = useState<number>(1);
@@ -13,14 +13,15 @@ const HomePage: React.FC = () => {
     backlink + "flowers?page=" + currPage
   );
 
-  const [flowers, setFlowers] = useState<Flower[] | undefined>()
+  const [flowers, setFlowers] = useState<FlowerDetailsData[] | undefined>()
 
   useEffect( () => {
-    setFlowers(data?.flowers)
+    if (data)
+      setFlowers(data.flowers);
   }, [data])
 
-  function setSearchedFlowers(text: string) {
-    let searchedData: Flower[] | undefined;
+  const setSearchedFlowers = (text: string) => {
+    let searchedData: FlowerDetailsData[] | undefined;
     if (text){
       searchedData = data?.flowers.filter(flower => isAMatch(text, flower))
     }
@@ -30,7 +31,7 @@ const HomePage: React.FC = () => {
     setFlowers(searchedData);
   }
 
-  function isAMatch(text:string, flower:Flower):boolean {
+  function isAMatch(text:string, flower:FlowerDetailsData):boolean {
     let match:boolean = false;
     if (flower.name.includes(text) || flower.latin_name.includes(text)) {
         match = true;

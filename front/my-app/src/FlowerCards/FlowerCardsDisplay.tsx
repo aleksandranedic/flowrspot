@@ -1,12 +1,12 @@
 import React from "react";
 import FlowerCards from "../FlowerCards/FlowerCards";
+import { FlowerDetailsData } from "../model/FlowerInterface";
 import PaginationBox from "../utils/PaginationBox";
-import { Flower } from "../model/FlowerInterface";
 
 interface FlowerCardsDisplayProps {
   setCurrentPage: (num:number) => void,
   totalPages: number,
-  data: Flower[]
+  data: FlowerDetailsData[]
 }
 
 const FlowerCardsDisplay: React.FC<FlowerCardsDisplayProps> = ({setCurrentPage, totalPages, data}) => {

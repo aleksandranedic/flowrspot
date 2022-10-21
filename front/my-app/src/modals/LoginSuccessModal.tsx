@@ -1,7 +1,7 @@
 import React from "react";
 import Modal from "react-modal";
 import { fetchUserSighting } from "../fetch-data/services/sightingService";
-import { infoAboutLogedUser } from "../fetch-data/services/userService";
+import { fetchUserFavorites, infoAboutLogedUser } from "../fetch-data/services/userService";
 import { ModalProps } from "../model/Props";
 import { User } from "../model/UserInfo";
 import { useAppDispatch } from "../state/hooks";
@@ -28,10 +28,10 @@ const LoginSuccessModal: React.FunctionComponent<ModalProps> = ({
   const fetchLogedUserThunk = async (dispatch: any) => {
     const responseUser = await infoAboutLogedUser("users/me");
     const responseSightings = await fetchUserSighting(`users/${responseUser.data.user.id}/sightings`)
-    const responseFlowers = await fetchUserSighting("flowers/favorites?page=1")
+    const responseFlowers = await fetchUserFavorites("flowers/favorites?page=1")
+    dispatch(setFavoriteFlowers(responseFlowers))
     dispatch(login(new User(responseUser.data.user.id,responseUser.data.user.first_name,responseUser.data.user.last_name)));
     dispatch(setSightings(responseSightings.data.sightings));
-    dispatch(setFavoriteFlowers(responseFlowers.data.fav_flowers))
   };
 
   return (
@@ -55,7 +55,7 @@ const LoginSuccessModal: React.FunctionComponent<ModalProps> = ({
             OK
           </button>
           <button
-            onClick={() => openProfileModal}
+            onClick={openProfileModal}
             className="pink-button !rounded self-center mt-5"
           >
             Profile

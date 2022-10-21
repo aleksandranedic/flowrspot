@@ -53,11 +53,11 @@ export class User {
   get userId() {
     return this.id
   }
-  public static createUser(obj:string):User|null {
-    if (obj) {
-      let user = JSON.parse(obj);
-      return new User(user.id, user.first_name, user.last_name, user.userEmail, user.date_of_birth)
+  public static createUser(obj:string): User|null {
+    if (!obj) {
+      return null;
     }
-    return null;
+    let user = JSON.parse(obj);
+    return new User(user.id, user.first_name, user.last_name, user.userEmail, user.date_of_birth)
   }
 }

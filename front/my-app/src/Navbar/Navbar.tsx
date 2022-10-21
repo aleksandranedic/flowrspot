@@ -7,7 +7,7 @@ import LogedNavOption from "./LogedNavOption";
 import NotLogedNavOptions from "./NotLogedNavOption";
 
 const Navbar: React.FC = () => {
-  const loggedUser = useAppSelector((state) => state.loggedUser.loggedUser);
+  const loggedUser = useAppSelector((state) => User.createUser(state.loggedUser.loggedUser));
   const logged = useAppSelector((state) => state.loggedUser.logged);
   const [open, setOpen] = useState<boolean>(false);
 
@@ -35,9 +35,9 @@ const Navbar: React.FC = () => {
           <a href="/sightings" className="gray-text accordion-item">
             Latest Sightings
           </a>
-          <a href="/favorites" className="gray-text accordion-item">
+          {logged && <a href="/favorites" className="gray-text accordion-item">
             Favorites
-          </a>
+          </a>}
           {!logged && (
             <>
               <NotLogedNavOptions navbarOpen={setOpen} />

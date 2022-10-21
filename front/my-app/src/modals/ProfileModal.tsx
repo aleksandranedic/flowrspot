@@ -9,7 +9,7 @@ const ProfileModal: React.FunctionComponent<ModalProps> = ({
   openModal,
   setOpenModal,
 }) => {
-  const loggedUser = useAppSelector((state) => state.loggedUser.loggedUser);
+  const loggedUser = useAppSelector((state) => User.createUser(state.loggedUser.loggedUser));
   const sightingsNum:number = useAppSelector((state) => state.loggedUser.sightings.length);
   const dispatch = useAppDispatch();
 

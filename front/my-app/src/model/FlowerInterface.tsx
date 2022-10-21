@@ -1,49 +1,33 @@
-import { markFavoriteFlower, unmarkFlowerFavorite } from "../fetch-data/services/flowerService";
-import { backlink } from "../utils/Constants";
-
 export interface FlowerList {
-  flowers: Flower[];
+  flowers: FlowerDetailsData[];
 }
 
 export interface FlowerData {
-  flower: Flower;
+  flower: FlowerDetailsData;
 }
 
 export interface FlowerDetails {
-  flower: {
-    description: string,
-    favorite: boolean,
-    features: string[],
-    id: number,
-    latin_name: string,
-    name: string, 
-    profile_picture: string,
-    sightings:number
-  }
+  flower: FlowerDetailsData
 };
 
-export interface Flower {
-  id: number;
-  name: string;
-  latin_name: string;
-  sightings: number;
-  profile_picture: string;
-  favorite: boolean;
+export interface FlowerDetailsData{
+  id: number,
+  name: string, 
+  latin_name: string,
+  sightings:number
+  profile_picture: string,
+  favorite: boolean,
+  favoriteId?: number,
+  description?: string,
+  features?: string[],
 }
 
 export interface FavoriteFlower {
-  fav_flowers: {
-    flower: Flower,
-    id:number,
-    user_id:number
-  }[]
+  fav_flowers: FavoriteFlowerData[]
 }
 
-export function setFavorite(id: number, favorite:boolean, favorite_id:number) {
-  if (favorite) {
-    unmarkFlowerFavorite(backlink +  `flowers/${id}/favorites/${favorite_id}`)
-  }
-  else {
-    markFavoriteFlower( backlink + `flowers/${id}/favorites`);
-  }
+export interface FavoriteFlowerData {
+  id: number,
+  user_id: number,
+  flower: FlowerDetailsData
 }

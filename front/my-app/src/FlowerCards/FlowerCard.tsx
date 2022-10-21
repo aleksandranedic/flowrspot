@@ -5,19 +5,14 @@ import SightingsButton from "../utils/SightingsButton";
 
 
 const FlowerCard: React.FC<FlowerData> = ({ flower }) => {
-
-  const seeProfile = (id:number) => {
-    window.location.href = `/flower/${id}`
-  }
-
   return (
-    <div className="relative cursor-pointer" onClick={() => seeProfile(flower.id)}>
+    <div className="relative cursor-default">
       <img
         src={flower.profile_picture}
         alt={flower.name}
         className="flower-img"
       />
-      <div className="absolute top-3 right-3">
+      <div className="absolute top-3 right-3 z-10">
         <FavoriteButton flower={flower}/>
       </div>
 
@@ -25,7 +20,7 @@ const FlowerCard: React.FC<FlowerData> = ({ flower }) => {
         <p className="font-Ubuntu font-bold text-2xl">{flower.name}</p>
         <p className="font-Ubuntu font-extralight">{flower.latin_name}</p>
         <div className="mt-10 ">
-          <SightingsButton favorite={flower.favorite} sightings={flower.sightings} />
+          <SightingsButton favorite={flower.favorite} sightings={flower.sightings} flowerId={flower.id} />
         </div>
       </div>
     </div>

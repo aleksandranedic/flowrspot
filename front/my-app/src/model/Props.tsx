@@ -1,4 +1,4 @@
-import { Flower } from "./FlowerInterface";
+import { FlowerDetailsData } from "./FlowerInterface";
 
 export interface ModalProps {
   openModal: boolean;
@@ -8,6 +8,6 @@ export interface ModalProps {
 }
 
 export interface  SearchProps {
-  data: Flower[],
+  data: FlowerDetailsData[],
   setFlowers: (text: string) => void
 }

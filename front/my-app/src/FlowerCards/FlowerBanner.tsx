@@ -28,6 +28,7 @@ const FlowerBanner: React.FunctionComponent<FlowerBannerProps> = ({ data }) => {
           <SightingsButton
             favorite={data.flower.favorite}
             sightings={data.flower.sightings}
+            flowerId={data.flower.id}
           />
           <p className="font-ubuntu text-5xl !font-light text-white w-full">
             {" "}
