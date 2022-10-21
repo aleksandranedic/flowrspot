@@ -3,10 +3,10 @@ import { AiOutlineSearch } from "react-icons/ai";
 import { useAppSelector } from "../state/hooks";
 
 const SearchBox: React.FC = () => {
-  const loged = useAppSelector((state) => state.logedUser.loged);
+  const logged = useAppSelector((state) => state.loggedUser.logged);
 
   return (
-    <div className={`searchbox ${loged ? "!bottom-1/2" : ""}`}>
+    <div className={`searchbox ${logged ? "!bottom-1/2" : ""}`}>
       <div className="bg-white w-2/3 lg:w-1/2 flex">
         <input
           type="text"

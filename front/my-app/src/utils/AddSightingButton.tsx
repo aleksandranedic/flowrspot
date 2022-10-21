@@ -6,11 +6,11 @@ interface AddSightingButtonProps {
 }
  
 const AddSightingButton: React.FunctionComponent<AddSightingButtonProps> = () => {
-    const loged:boolean = useAppSelector(state => state.logedUser.loged);
+    const logged:boolean = useAppSelector(state => state.loggedUser.logged);
     const {id} = useParams<{id:string}>();
     return ( 
         <>
-        { loged && <button className="pink-button !rounded !text-lg self-center" onClick={() =>  window.location.href=`/add/${id}`}> +Add new Sighting</button> }
+        { logged && <button className="pink-button !rounded !text-lg self-center" onClick={() =>  window.location.href=`/add/${id}`}> +Add new Sighting</button> }
         </>
 
      );

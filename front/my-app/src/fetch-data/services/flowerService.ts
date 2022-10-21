@@ -26,15 +26,3 @@ export const unmarkFlowerFavorite = async (url:string): Promise<AxiosResponse> =
 export const fetchFlowerDetails = async (url:string): Promise<AxiosResponse> => {
   return await http.get<FlowerDetails, Promise<AxiosResponse>>(url);
 }
-
-/*export const createUser = async (user: User): Promise<User> => {
-  return await http.post<User>("/users", user);
-};
-
-export const updateUser = async (user: User): Promise<User> => {
-  return await http.put<User>(`/users/${user.id}`, user);
-};
-
-export const deleteUser = async (user: User): Promise<User> => {
-  return await http.delete<User>(`/users/${user.id}`);
-};*/

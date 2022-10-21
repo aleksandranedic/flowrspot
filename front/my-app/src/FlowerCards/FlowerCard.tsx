@@ -6,7 +6,7 @@ import SightingsButton from "../utils/SightingsButton";
 
 const FlowerCard: React.FC<FlowerData> = ({ flower }) => {
 
-  function seeProfile(id:number) {
+  const seeProfile = (id:number) => {
     window.location.href = `/flower/${id}`
   }
 

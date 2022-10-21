@@ -1,6 +1,6 @@
 import { SightingComment } from "../model/SightingInterface";
 import PaginationBox from "../utils/PaginationBox";
-import SightingUserInfo from "./SightingUserInfo";
+import SightingUserInfo from "../user/SightingUserInfo";
 
 interface SightingCommentsProps {
     comments: SightingComment[];
@@ -11,7 +11,7 @@ interface SightingCommentsProps {
  
 const renderComment = (comment:SightingComment, flowerName:string) => {
     return <div key={comment.id}>
-        <SightingUserInfo flowerName={flowerName} userFullName={comment.user_full_name} description={comment.content}/>
+        <SightingUserInfo flowerName={flowerName} userFullName={comment.user_full_name} userId={comment.user_id} description={comment.content}/>
     </div>
 }
 const SightingComments: React.FunctionComponent<SightingCommentsProps> = ({comments, setCurrPage, maxPages, flowerName}) => {

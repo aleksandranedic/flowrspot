@@ -1,7 +1,6 @@
 import {useState} from 'react'
 import { getSightings, sightingDetailsData } from '../fetch-data/services/sightingService';
 import { useFetch } from '../fetch-data/useFetch';
-import AddSightingButton from '../utils/AddSightingButton';
 import PaginationBox from '../utils/PaginationBox';
 import SightingsBanner from './SightingsBanner';
 import SightingsCards from './SightingsCards';
@@ -19,9 +18,6 @@ const SightingsList: React.FunctionComponent = () => {
             <PaginationBox currPageHandler={setCurrPage} maxPages={data.meta.pagination.total_pages}/>
             </div>
         }
-        <div className='flex w-full justify-center sm:hidden mt-10 mb-10'>
-            {/* <AddSightingButton /> */}
-        </div>
         </>
      );
 }

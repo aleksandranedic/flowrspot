@@ -15,7 +15,7 @@ interface SightingDetailsCommentsProps {
 const SightingDetailsComments: React.FunctionComponent<SightingDetailsCommentsProps> = ({id, flowerName, increaseCommentNum}) => {
     const [currPage, setCurrPage] = useState<number>(1)
     const [comment, setComment] = useState<string>("");
-    const loged:boolean = useAppSelector(state => state.logedUser.loged)
+    const logged:boolean = useAppSelector(state => state.loggedUser.logged)
     const [data, isPending, error] = useFetch<sightingCommentsData>(fetchSightingComments, `sightings/${id}/comments?page=${currPage}`)
     const [comments, setComments] = useState<SightingComment[]>([]);
 
@@ -23,19 +23,20 @@ const SightingDetailsComments: React.FunctionComponent<SightingDetailsCommentsPr
 
     const  handleSubmit = async (event:FormEvent) => {
         event.preventDefault();
-        if (comment) {
-           const d = await addComment(`sightings/${id}/comments`, {content:comment})
-           setComments([...comments, d.data.comment])
-           setComment("");
-           commentRef!.current!.value = '';
-           increaseCommentNum();
-        }
+        if (!comment)
+            return;
+        const d = await addComment(`sightings/${id}/comments`, {content:comment})
+        setComments([...comments, d.data.comment])
+        setComment("");
+        commentRef!.current!.value = '';
+        increaseCommentNum();
     }
 
     useEffect(() => {
-        if (typeof data !== "undefined") {
-            setComments(data.comments);
-        }
+        if (!data) 
+            return;
+        setComments(data.comments);
+        
     }, [data])
 
     return ( 
@@ -43,12 +44,12 @@ const SightingDetailsComments: React.FunctionComponent<SightingDetailsCommentsPr
             <hr/>
             <div className="flex justify-between sm:pl-20 sm:pr-20">
                 <p className="font-Ubuntu text-secondary-title !font-light text-xl"> {comments.length} comments</p>
-                { loged &&
+                { logged &&
                     <button className="text-primary-text shadow-lg p-3 font-Ubuntu !font-medium rounded hover:text-lg"> Add Comment</button>
                 }
             </div>
             {!isPending && !error && data && <SightingComments comments={comments} flowerName={flowerName} setCurrPage={setCurrPage} maxPages={data.meta.pagination.total_pages}/>}
-            { loged && 
+            { logged && 
                 <form className="flex flex-col items-end gap-3 mt-10" onSubmit={handleSubmit}>
                     <div className="modal-group h-fit w-full">
                             <label className="modal-input-label">Write a comment...</label>

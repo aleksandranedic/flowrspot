@@ -3,7 +3,7 @@ import logedUserReducer from "./logedUserSlice";
 
 export const store = configureStore({
   reducer: {
-    logedUser: logedUserReducer,
+    loggedUser: logedUserReducer,
   },
   middleware: getDefaultMiddleware =>
   getDefaultMiddleware({

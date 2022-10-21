@@ -5,6 +5,8 @@ export interface Sighting {
   description: string;
   latitude: string;
   longitude: number;
+  userId?: number;
+  userFullName?: string
 }
 
 export interface SightingList {

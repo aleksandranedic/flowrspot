@@ -14,7 +14,7 @@ const SightingDetailsComp: React.FunctionComponent = () => {
     const [sighting, setSighting] = useState<SightingDetails | null>(null);
 
     useEffect(() => {
-        if (typeof data !== "undefined") {
+        if (data) {
             setSighting(data.sighting);
         }
     }, [data])

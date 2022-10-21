@@ -1,9 +1,8 @@
 import React from "react";
 import Modal from "react-modal";
-import { fetchSightingInfo, fetchUserSighting } from "../fetch-data/services/sightingService";
+import { fetchUserSighting } from "../fetch-data/services/sightingService";
 import { infoAboutLogedUser } from "../fetch-data/services/userService";
 import { ModalProps } from "../model/Props";
-import { Sighting, SightingDetails, SightingInfoData } from "../model/SightingInterface";
 import { User } from "../model/UserInfo";
 import { useAppDispatch } from "../state/hooks";
 import { login, setFavoriteFlowers, setSightings } from "../state/logedUserSlice";
@@ -31,20 +30,9 @@ const LoginSuccessModal: React.FunctionComponent<ModalProps> = ({
     const responseSightings = await fetchUserSighting(`users/${responseUser.data.user.id}/sightings`)
     const responseFlowers = await fetchUserSighting("flowers/favorites?page=1")
     dispatch(login(new User(responseUser.data.user.id,responseUser.data.user.first_name,responseUser.data.user.last_name)));
-    dispatch(setSightings(fetchUserSightingsDetails(responseSightings.data.sightings)));
+    dispatch(setSightings(responseSightings.data.sightings));
     dispatch(setFavoriteFlowers(responseFlowers.data.fav_flowers))
   };
-
-  const fetchUserSightingsDetails = (arr:Sighting[]) => {
-    let sightings:SightingDetails[] = []
-    arr.forEach((element:Sighting) => pushData(sightings, element));
-    return sightings;
-  }
-
-  const pushData = async(sightings:SightingDetails[],element:Sighting) => {
-    let data:SightingDetails = await fetchSightingInfo<SightingInfoData>(`sightings/${element.id}`).then(r => r.data.sighting);
-    sightings.push(data)
-  }
 
   return (
     <Modal

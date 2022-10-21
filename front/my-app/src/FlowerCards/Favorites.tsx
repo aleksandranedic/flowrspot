@@ -4,7 +4,7 @@ import { useAppSelector } from "../state/hooks";
 import { FavoriteFlower } from "../model/FlowerInterface";
 
 const Favorites: React.FunctionComponent = () => {
-  const flowers:FavoriteFlower[] = useAppSelector((state) => state.logedUser.favoriteFlowers.flowers);
+  const flowers:FavoriteFlower[] = useAppSelector((state) => state.loggedUser.favoriteFlowers.flowers);
   
   return (
       <FlowerCardsDisplay />
